@@ -19,7 +19,7 @@ function timeClick(time) {
     document.getElementById("question2").style.display = "none";
 }
 
-// Кнопка "Нет" — трясётся и немного уходит
+// Кнопка "Нет" — трясётся и немного уходит, но НЕ пропадает
 function moveNo() {
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
@@ -30,9 +30,9 @@ function moveNo() {
         noBtn.style.animation = "";
     }, 300);
 
-    // Небольшое смещение
-    const moveX = (Math.random() * 40) - 20; // -20px до +20px
-    const moveY = (Math.random() * 30) - 15; // -15px до +15px
+    // Небольшое смещение (НЕ далеко)
+    const moveX = (Math.random() * 20) - 10; // -10px до +10px
+    const moveY = (Math.random() * 15) - 7;  // -7px до +7px
 
     const currentLeft = noBtn.offsetLeft;
     const currentTop = noBtn.offsetTop;
