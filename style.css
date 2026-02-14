@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+.question {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    position: relative;
+    height: 80px;
+}
+
+button {
+    padding: 12px 22px;
+    border-radius: 25px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background: #ccc;
+    position: absolute;
+}
+
+.hidden {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ff4d6d;
+}
+
+/* Сердечки */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Гифки */
+.gif {
+    position: absolute;
+    width: 120px;
+    z-index: 1;
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
