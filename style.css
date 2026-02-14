@@ -76,7 +76,7 @@ button {
 .hidden { display: none; margin-top: 20px; font-size: 18px; color: #ff4d6d; }
 
 /* Постоянная смешная гифка */
-.funny-gif { position: fixed; bottom: 10px; left: 10px; width: 90px; z-index: 1; pointer-events: none; }
+.годжо.mp4 { position: fixed; bottom: 10px; left: 10px; width: 90px; z-index: 1; pointer-events: none; }
 
 /* Сердечки */
 .heart {
