@@ -2,13 +2,17 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Для Айкос ❤️</title>
+    <title>Для Айкос (руина) ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Постоянная смешная гифка -->
+<img src="funny.gif" class="funny-gif" alt="funny">
+
 <div class="card">
-    <h1>💖 Айкос 💖</h1>
+    <h1>💖 Айкос (руина) 💖</h1>
 
     <p class="question">
         Хочешь провести День святого Валентина вместе? 💘
@@ -16,16 +20,13 @@
 
     <div class="buttons">
         <button id="yesBtn" onclick="yesClick()">Да 💕</button>
-        <button id="noBtn" onmouseover="moveNo()">Нет 🙈</button>
+        <button id="noBtn" ontouchstart="moveNo()" onmouseover="moveNo()">Нет 🙈</button>
     </div>
 
     <p id="result" class="hidden">
         Урааа 🥰 Тогда это будет лучший день ❤️
     </p>
 </div>
-
-<div id="hearts"></div>
-<div id="gifs"></div>
 
 <script src="script.js"></script>
 </body>
