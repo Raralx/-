@@ -1,30 +1,48 @@
-// Кнопка "Да"
+// Первый вопрос — "Да"
 function yesClick() {
-    document.getElementById("result").style.display = "block";
+    document.getElementById("question1").style.display = "none";
+    document.getElementById("buttons1").style.display = "none";
+    document.getElementById("question2").style.display = "block";
 
-    for (let i = 0; i < 6; i++) {
-        setTimeout(spawnGif, i * 350);
+    // Летающие гифки
+    for (let i = 0; i < 5; i++) {
+        setTimeout(spawnGif, i * 300);
     }
 }
 
-// Кнопка "Нет" убегает
+// Второй вопрос — выбор времени
+function timeClick(time) {
+    const result = document.getElementById("result");
+    result.innerHTML = `🥰 Отлично! Тогда встречаемся в <b>${time}</b> ❤️`;
+    result.style.display = "block";
+
+    document.getElementById("question2").style.display = "none";
+}
+
+// Кнопка "Нет" — трясётся и немного уходит
 function moveNo() {
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
 
-    const padding = 20;
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    // Анимация тряски с уменьшением
+    noBtn.style.animation = "shake 0.3s";
+    setTimeout(() => {
+        noBtn.style.animation = "";
+    }, 300);
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    // Небольшое смещение
+    const moveX = (Math.random() * 40) - 20; // -20px до +20px
+    const moveY = (Math.random() * 30) - 15; // -15px до +15px
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    const currentLeft = noBtn.offsetLeft;
+    const currentTop = noBtn.offsetTop;
 
-    // "Да" становится больше
+    noBtn.style.left = currentLeft + moveX + "px";
+    noBtn.style.top = currentTop + moveY + "px";
+
+    // Кнопка "Да" чуть растёт
     const scale = yesBtn.dataset.scale ? Number(yesBtn.dataset.scale) : 1;
-    const newScale = Math.min(scale + 0.08, 1.6);
+    const newScale = Math.min(scale + 0.07, 1.6);
     yesBtn.dataset.scale = newScale;
     yesBtn.style.transform = `scale(${newScale})`;
 }
