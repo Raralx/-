@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для Руины</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6f2;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #quiz {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 2rem;
+            margin: 20px;
+            text-shadow: 2px 2px white;
+        }
+
+        .gojo-gif {
+            width: 200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для кнопок */
+        .btn-container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.1s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d94;
+            color: white;
+            z-index: 100;
+        }
+
+        #noBtn {
+            background-color: #888;
+            color: white;
+            position: fixed; /* Чтобы всегда была поверх всего */
+            z-index: 999;
+            /* Начальное положение */
+            top: 60%; 
+            left: 55%;
+            border: 2px solid white; /* Чтобы было видно на любом фоне */
+        }
+
+        .success-message {
+            display: none;
+            font-size: 2rem;
+            color: #d63384;
+            z-index: 1000;
+        }
+
+        /* Падающие элементы */
+        .falling {
+            position: absolute;
+            top: -50px;
+            pointer-events: none;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
+        .heart-shape {
+            color: #ff69b4;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quiz">
+        <img src="Gojo.gif" class="gojo-gif" alt="Gojo">
+        <h1>Руина,хочешь провести день святого Валентина в МЛББ?)</h1>
+        
+        <div class="btn-container">
+            <button id="yesBtn">ДА!</button>
+            <button id="noBtn">Нет</button>
+        </div>
+    </div>
+
+    <div id="success" class="success-message">
+        <h1>Ура! Погнали сливать рейтинг! ⚔️💖</h1>
+        <p>Годжо одобряет)</p>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const quiz = document.getElementById('quiz');
+        const success = document.getElementById('success');
+
+        let yesScale = 1;
+
+        function moveButton() {
+            // Увеличиваем ДА
+            yesScale += 0.4;
+            yesBtn.style.transform = `scale(${yesScale})`;
+
+            // Двигаем НЕТ внутри окна браузера
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // События для кнопки НЕТ
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
+        noBtn.addEventListener('click', moveButton);
+
+        // Событие для ДА
+        yesBtn.addEventListener('click', () => {
+            quiz.style.display = 'none';
+            success.style.display = 'block';
+            document.body.style.backgroundColor = "#ffcce6";
+        });
+
+        // Падающие сердечки и логотипы
+        function createFalling() {
+            const el = document.createElement('div');
+            el.className = 'falling';
+            
+            if (Math.random() > 0.5) {
+                el.innerHTML = '❤️';
+                el.style.fontSize = Math.random() * 20 + 20 + 'px';
+            } else {
+                // Текст вместо картинки логотипа для надежности, либо ссылка на лого
+                el.innerHTML = '<b style="color:#2c3e50; font-size:12px;">MLBB</b>';
+            }
+
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(el);
+
+            setTimeout(() => el.remove(), 5000);
+        }
+
+        setInterval(createFalling, 300);
+    </script>
+</body>
+</html>
