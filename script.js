@@ -31,8 +31,8 @@ function moveNo() {
     }, 300);
 
     // Небольшое смещение (НЕ далеко)
-    const moveX = (Math.random() * 20) - 10; // -10px до +10px
-    const moveY = (Math.random() * 15) - 7;  // -7px до +7px
+    const moveX = (Math.random() * 40) - 20; // -10px до +10px
+    const moveY = (Math.random() * 30) - 15;  // -7px до +7px
 
     const currentLeft = noBtn.offsetLeft;
     const currentTop = noBtn.offsetTop;
